@@ -1,5 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 
+import 'dialog_box.dart';
 import 'todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,11 +23,25 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void createTask() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('To Do'),
+          title: const Text('To Do'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: createTask,
+          child: Icon(Icons.add),
+          backgroundColor: Colors.yellow,
         ),
         body: ListView.builder(
           itemCount: ToDoList.length,
